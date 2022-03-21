@@ -3,11 +3,11 @@
     <div class="container pt-5">
       <b-form @submit.prevent="onSubmit">
 
-        <b-form-group id="input-group-1" label="Usuário:" label-for="input-1">
+        <b-form-group id="input-group-1" label="Nome:" label-for="input-1">
           <b-form-input
             id="input-1"
-            v-model="form.usuario"
-            placeholder="Insira seu usuário"
+            v-model="form.name"
+            placeholder="Insira seu nome"
             required
           ></b-form-input>
         </b-form-group>
@@ -22,11 +22,11 @@
           ></b-form-input>
         </b-form-group>
 
-        <b-form-group id="input-group-3" label="Identificador:" label-for="input-3">
+        <b-form-group id="input-group-3" label="Registro:" label-for="input-3">
           <b-form-input
             id="input-3"
-            v-model="form.identificador"
-            placeholder="Insira seu identificador"
+            v-model="form.registro"
+            placeholder="Insira seu registro"
             required
           ></b-form-input>
         </b-form-group>
@@ -43,16 +43,22 @@ export default {
   data() {
     return {
       form: {
-        usuario: '',
+        name: '',
         email: '',
-        identificador: ''
+        registro: ''
       }
     }
   },
   methods:{
     onSubmit(){
       console.log(this.form);
-      this.$router.push('/veterinario/abertas/');
+      this.$axios.post("veterinario/cadastrar/", this.form)
+      .then(res => {
+        this.$router.push('/veterinario/abertas');
+      })
+      .catch(err => {
+        console.log(err)
+      });
     }
   }
 }

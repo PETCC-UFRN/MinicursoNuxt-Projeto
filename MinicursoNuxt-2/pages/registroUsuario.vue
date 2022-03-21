@@ -6,7 +6,7 @@
         <b-form-group id="input-group-1" label="Nome:" label-for="input-1">
           <b-form-input
             id="input-1"
-            v-model="form.nome"
+            v-model="form.name"
             placeholder="Insira seu nome"
             required
           ></b-form-input>
@@ -52,17 +52,26 @@ export default {
   data() {
     return {
       form: {
-        nome: '',
+        name: '',
         email: '',
         telefone: '',
         endereço: ''
       }
     }
   },
+  mounted() {
+  },
   methods:{
     onSubmit(){
       console.log(this.form);
-      this.$router.push('/usuario/pets');
+      this.$axios.post("dono/cadastrar/", this.form)
+      .then(res => {
+        console.log(res)
+        this.$router.push('/usuario/pets');
+      })
+      .catch(err => {
+        console.log(err)
+      });
     }
   }
 }

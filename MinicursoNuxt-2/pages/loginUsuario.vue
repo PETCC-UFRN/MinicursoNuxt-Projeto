@@ -31,7 +31,6 @@ export default {
   },
   methods:{
     onSubmit(){
-      console.log(this.form);
       this.$router.push('/usuario/pets');
     }
   }

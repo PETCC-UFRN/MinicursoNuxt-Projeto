@@ -27,6 +27,7 @@ export default {
   plugins: [
   ],
 
+
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
@@ -37,8 +38,14 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/bootstrap
+    '@nuxtjs/axios',
     'bootstrap-vue/nuxt',
   ],
+
+  axios: {
+    // See https://github.com/nuxt-community/axios-module#options
+    baseURL: "http://epet.imd.ufrn.br:8443/api/"
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
